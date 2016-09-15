@@ -44,7 +44,7 @@ class request_namechange_module
 		}
 
 		// See if the user has an open request. If they do, show them the cancel request page.
-		$sql = 'SELECT requested_username, request_id, request_status
+		$sql = 'SELECT requested_username, request_id, request_user_id, request_status
 				FROM ' . LAXSLASH_NCREQUESTS_REQUESTS_TABLE . '
 				WHERE (request_user_id = ' . $user->data['user_id'] . ' AND request_status = ' . LAXSLASH_NCREQUESTS_REQUEST_STATUS_PENDING . ')';
 		$result = $db->sql_query($sql);
@@ -106,7 +106,9 @@ class request_namechange_module
 					{
 						unset($row);
 						unset($sql_arr);
-						trigger_error('LAXSLASH_NCREQUESTS_ERROR_NO_RECORDS_DELETED', E_USER_WARNING); // Is it even possible to go here?
+
+						// meta_refresh(3, $this->u_action); // No meta_refresh for errors.
+						trigger_error($user->lang['LAXSLASH_NCREQUESTS_ERROR_NO_RECORDS_DELETED'] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>'), E_USER_WARNING); // Is it even possible to go here?
 					} else {
 						$sql_arr = array(
 							'request_id' => $row['request_id'],
@@ -127,7 +129,8 @@ class request_namechange_module
 						$phpbb_log->add('user', $user->data['user_id'], $user->ip, 'LAXSLASH_NCREQUESTS_LOG_USER_CANCELLED_CHANGE', time(), array($user->data['username'], $row['requested_username']));
 
 						unset($row);
-						trigger_error('LAXSLASH_NCREQUESTS_UCP_REQUEST_CANCELLED_SUCCESS');
+						meta_refresh(3, $this->u_action);
+						trigger_error($user->lang['LAXSLASH_NCREQUESTS_UCP_REQUEST_CANCELLED_SUCCESS'] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>'));
 					}
 				}
 			}
@@ -256,7 +259,8 @@ class request_namechange_module
 				unset($data);
 
 				// We can stop the user from running into brick walls now.
-				trigger_error('LAXSLASH_NCREQUESTS_UCP_REQUEST_SUBMITTED_SUCCESS');
+				meta_refresh(3, $this->u_action);
+				trigger_error($user->lang['LAXSLASH_NCREQUESTS_UCP_REQUEST_SUBMITTED_SUCCESS'] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>'));
 			}
 		}
 
