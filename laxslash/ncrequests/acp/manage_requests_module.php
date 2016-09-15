@@ -147,7 +147,7 @@ class manage_requests_module
 								$insert_arr[] = array(
 									'request_id' => $row['request_id'],
 									'logging_user_id' => $user->data['user_id'],
-									'request_user_id' => $user->data['request_user_id'],
+									'request_user_id' => $row['request_user_id'],
 									'username_old' => $row['username'],
 									'username_new' => $row['requested_username'],
 									'notification_sent' => ($send_notification_to_user) ? true : false,
