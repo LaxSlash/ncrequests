@@ -100,3 +100,4 @@ class v01a extends migration
 		);
 	}
 }
+
