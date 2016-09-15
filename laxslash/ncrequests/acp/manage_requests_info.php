@@ -17,7 +17,7 @@ class manage_requests_info
 		return array(
 			'filename'		=>		'\laxslash\ncrequests\acp\manage_requests_module',
 			'title'			=>		'ACP_LAXSLASH_NCREQUESTS_MANAGE_MODULE_TITLE',
-			'version'		=>		'0.1-PL1 ALPHA',
+			'version'		=>		'0.2 ALPHA',
 			'modes'			=>		array(
 				'manage_requests'		=>		array(
 					'title'				=>		'ACP_LAXSLASH_NCREQUESTS_MANAGE_MODULE_TITLE',

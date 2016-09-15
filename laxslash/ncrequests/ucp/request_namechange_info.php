@@ -17,7 +17,7 @@ class request_namechange_info
 		return array(
 			'filename'		=>		'\laxslash\ncrequests\ucp\request_namechange_module',
 			'title'			=>		'UCP_LAXSLASH_NCREQUESTS_REQUEST_CHANGE_MODULE',
-			'version'		=>		'0.1 ALPHA',
+			'version'		=>		'0.2 ALPHA',
 			'modes'			=>		array(
 				'ncrequest'		=>		array(
 					'title'		=>		'UCP_LAXSLASH_NCREQUESTS_REQUEST_CHANGE_MODULE',
