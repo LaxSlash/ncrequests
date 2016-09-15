@@ -1,0 +1,79 @@
+<!-- INCLUDE overall_header.html -->
+
+<a id="maincontent"></a>
+
+<h1>{L_LAXSLASH_NCREQUESTS_ACP_MANAGE_REQUESTS}</h1>
+
+<p>{L_LAXSLASH_NCREQUESTS_ACP_MANAGE_REQUESTS_EXPLAIN}</p>
+
+<!-- IF S_ERRORS -->
+	<p class="error">
+		{ERRORS_OUTPUT}
+	</p>
+<!-- ENDIF -->
+
+<!-- IF S_LAXSLASH_NCREQUESTS_REQUESTS_FOUND --><form action="{U_ACTION}" method="post" name="manage_ncrequests"><!-- ENDIF -->
+	<table class="table1 zebra-table responsive">
+		<thead>
+			<tr>
+				<th>{L_LAXSLASH_NCREQUESTS_REQUESTED_BY_USERNAME}</th>
+				<th>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</th>
+				<th>{L_LAXSLASH_NCREQUESTS_DATE_OF_REQUEST}</th>
+				<th>{L_LAXSLASH_NCREQUESTS_IP_ADDRESS_OF_REQUEST}</th>
+				<th>{L_LAXSLASH_NCREQUESTS_PREVIOUS_REQUEST_APPROVED_DATE}</th>
+				<th>{L_MARK}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN show_requests -->
+				<tr>
+					<td style="vertical-align: top;"><strong><font color="{show_requests.LAXSLASH_NCREQUESTS_USERNAME_CURRENT_COLOR}">{show_requests.LAXSLASH_NCREQUESTS_REQUESTED_BY_USERNAME}</font></strong></td>
+					<td style="vertical-align: top;"><!-- IF !S_LAXSLASH_NCREQUESTS_CAN_EDIT_REQUESTS -->{show_requests.LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}<!-- ELSE --><input type="text" class="text medium" name="edit_request_{show_requests.LAXSLASH_NCREQUESTS_REQUEST_ID}" id="{edit_request.LAXSLASH_NCREQUESTS_SHOW_REQUEST_ID}" value="{show_requests.LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}" maxlength="255" /><!-- ENDIF --></td>
+					<td style="vertical-align: top;">{show_requests.LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_TIMESTAMP}</td>
+					<td style="vertical-align: top;">{show_requests.LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_IPADDRESS}</td>
+					<td style="vertical-align: top;">{show_requests.LAXSLASH_NCREQUESTS_REQUEST_PREV_REQ_APPROVED_DATE}</td>
+					<td>&nbsp;<input type="checkbox" class="radio" name="mark[]" value="{show_requests.LAXSLASH_NCREQUESTS_REQUEST_ID}" />&nbsp;</td>
+				</tr>
+			<!-- BEGINELSE -->
+				<tr>
+					<td colspan="6" style="text-align: center;">{L_LAXSLASH_NCREQUESTS_ACP_NO_ACTIVE_REQUESTS}</td>
+				</tr>
+			<!-- END show_requests -->
+		</tbody>
+	</table>
+
+	<!-- IF S_LAXSLASH_NCREQUESTS_REQUESTS_FOUND -->
+		<fieldset>
+			<legend>{L_LAXSLASH_NCREQUESTS_ACP_PERFORM_ACTION_OPTIONS}</legend>
+			<dl>
+				<dt><label for="action_reason">{L_LAXSLASH_NCREQUESTS_ENTER_ACTION_REASON}{L_COLON}</label><br /><span>{L_LAXSLASH_NCREQUESTS_ENTER_ACTION_REASON_EXPLAIN}</span></dt>
+				<dd><input type="text" value="{LAXSLASH_NCREQUESTS_ACTION_REASON}" name="action_reason" id="action_reason" maxlength="255" class="text medium" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="log_usernote">{L_LAXSLASH_NCREQUESTS_LOG_IN_USER_NOTES}{L_COLON}</label><br /><span>{L_LAXSLASH_NCREQUESTS_LOG_IN_USER_NOTES_EXPLAIN}</span></dt>
+				<dd><input type="checkbox" class="radio" name="log_usernote" id="log_usernote" <!-- IF LAXSLASH_NCREQUESTS_LOG_USERNOTE -->checked <!-- ENDIF -->/></dd>
+			</dl>
+			<dl>
+				<dt><label for="incl_reason_in_notification">{L_LAXSLASH_NCREQUESTS_INCLUDE_REASON_IN_NOTIFICATION}{L_COLON}</label><br /><span>{L_LAXSLASH_NCREQUESTS_INCLUDE_REASON_IN_NOTIFICATION_EXPLAIN}</span></dt>
+				<dd><input type="checkbox" class="radio" name="incl_reason_in_notification" id="incl_reason_in_notification" <!-- IF LAXSLASH_NCREQUESTS_INCL_REASON -->checked <!-- ENDIF -->/></dd>
+			</dl>
+			<dl>
+				<dt><label for="send_notification_to_user">{L_LAXSLASH_NCREQUESTS_SEND_NOTIFICATION}{L_COLON}</label><br /><span>{L_LAXSLASH_NCREQUESTS_SEND_NOTIFICATION_EXPLAIN}</span></dt>
+				<dd><input type="checkbox" class="radio" name="send_notification_to_user" id="send_notification_to_user" <!-- IF LAXSLASH_NCREQUESTS_SEND_NOTIFICATION -->checked <!-- ENDIF -->/></dd>
+			</dl>
+		</fieldset>
+
+		<hr />
+
+		<fieldset class="quick">
+			<select name="requested_action">
+				{S_LAXSLASH_NCREQUESTS_MANAGE_OPTIONS}
+			</select>
+			<input class="button2" type="submit" name="submit_action" value="{L_SUBMIT}" />
+			<p class="small"><a href="#" onclick="marklist('manage_ncrequests', 'mark', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('manage_ncrequests', 'mark', false); return false;">{L_UNMARK_ALL}</a></p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

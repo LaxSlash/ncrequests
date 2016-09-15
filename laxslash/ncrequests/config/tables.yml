@@ -1,0 +1,3 @@
+parameters:
+    laxslash.ncrequests.requests: %core.table_prefix%ncrequests_requests
+    laxslash.ncrequests.adminlog: %core.table_prefix%ncrequests_adminlog

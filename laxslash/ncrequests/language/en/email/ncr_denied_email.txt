@@ -1,0 +1,9 @@
+Subject: Username change request denied
+
+Hello,
+
+This e-mail is to inform you that your username change request for {LAXSLASH_NCREQUESTS_REQUESTED_USERNAME} has unfortunately been denied.
+
+We hpe to see you soon again at {U_LAXSLASH_NCREQUESTS_BOARD_LINK}, though!
+
+{EMAIL_SIG}

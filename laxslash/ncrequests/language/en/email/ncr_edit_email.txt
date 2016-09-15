@@ -1,0 +1,13 @@
+Subject: Username change request edited
+
+Hello!
+
+This e-mail is to inform you that the username change request that you had open ({LAXSLASH_NCREQUESTS_REQUEST_USERNAME_OLD} has been edited.
+
+The new username requested is {LAXSLASH_NCREQUESTS_REQUEST_USERNAME_NEW}.
+
+Remember, should your request be appoved, you will have to login with that new username. Otherwise, you can continue to use your current username on the forums.
+
+We hope to see you back at {U_LAXSLASH_NCREQUESTS_BOARD_LINK} soon!
+
+{EMAIL_SIG}

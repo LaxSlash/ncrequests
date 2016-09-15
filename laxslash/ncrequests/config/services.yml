@@ -1,0 +1,71 @@
+imports:
+    - { resource: tables.yml }
+
+services:
+    laxslash.ncrequests.listener:
+        class: laxslash\ncrequests\event\main_listener
+        tags:
+            - { name: event.listener }
+        arguments:
+            - @dbal.conn
+            - @template
+            - @auth
+            - @user
+            - %core.php_ext%
+            - @laxslash.ncrequests.constants
+    laxslash.ncrequests.constants:
+        class: laxslash\ncrequests\controller\laxslash_ncrequests_constants
+        arguments:
+            - %laxslash.ncrequests.requests%
+            - %laxslash.ncrequests.adminlog%
+    laxslash.ncrequests.notification.type.ncr_approval:
+        class: laxslash\ncrequests\notification\ncr_approval
+        scope: prototype
+        tags:
+            - { name: notification.type }
+        arguments:
+            - @user_loader
+            - @dbal.conn
+            - @cache.driver
+            - @user
+            - @auth
+            - @config
+            - %tables.notification_types%
+            - %tables.notifications%
+            - %tables.user_notifications%
+            - %core.root_path%
+            - %core.php_ext%
+    laxslash.ncrequests.notification.type.ncr_denial:
+        class: laxslash\ncrequests\notification\ncr_denial
+        scope: prototype
+        tags:
+            - { name: notification.type }
+        arguments:
+            - @user_loader
+            - @dbal.conn
+            - @cache.driver
+            - @user
+            - @auth
+            - @config
+            - %tables.notification_types%
+            - %tables.notifications%
+            - %tables.user_notifications%
+            - %core.root_path%
+            - %core.php_ext%
+    laxslash.ncrequests.notification.type.ncr_edit:
+        class: laxslash\ncrequests\notification\ncr_edit
+        scope: prototype
+        tags:
+            - {name: notification.type }
+        arguments:
+            - @user_loader
+            - @dbal.conn
+            - @cache.driver
+            - @user
+            - @auth
+            - @config
+            - %tables.notification_types%
+            - %tables.notifications%
+            - %tables.user_notifications%
+            - %core.root_path%
+            - %core.php_ext%

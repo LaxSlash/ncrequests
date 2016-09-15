@@ -1,0 +1,67 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_UCP_LAXSLASH_NCREQUESTS_REQUEST_CHANGE_MODULE}</h2>
+
+<form method="post" name="ucp" action="{S_UCP_ACTION}">
+	<!-- IF S_REQUEST_EXISTS -->
+		<div class="panel">
+			<div class="inner">
+				<!-- IF S_ERRORS -->
+					<p class="error">
+						{ERRORS_OUTPUT}
+					</p>
+				<!-- ENDIF -->
+
+				<p>{L_UCP_LAXSLASH_NCREQUESTS_UNABLE_TO_CHANGE_REQUEST_OPEN}</p>
+				<fieldset>
+					<dl>
+						<dt><label>{L_UCP_LAXSLASH_NCREQUESTS_CURRENT_REQUEST_LBL}{L_COLON}</label></dt>
+						<dd><strong>{LAXSLASH_NCREQUESTS_CURRENT_REQUESTED_USERNAME}</strong></dd>
+					</dl>
+				</fieldset>
+			</div>
+		</div>
+
+	<!-- ELSE -->
+		<div class="panel">
+			<div class="inner">
+				<!-- IF S_ERRORS -->
+					<p class="error">
+						{ERRORS_OUTPUT}
+					</p>
+				<!-- ENDIF -->
+
+				<p>{L_UCP_LAXSLASH_NCREQUESTS_EXPLAIN_REQUEST_NAMECHANGE}</p>
+
+				<fieldset>
+					<dl>
+						<dt><label for="new_username_requested">{L_UCP_LAXSLASH_NCREQUESTS_NEW_USERNAME}{L_COLON}</label><br /><span>{L_USERNAME_EXPLAIN}</span></dt>
+						<dd><input type="text" name="new_username_requested" id="new_username_requested" class="inputbox" title="{L_UCP_LAXSLASH_NCREQUESTS_NEW_USERNAME}" value="{REQUESTED_USERNAME}" /></dd>
+					</dl>
+				</fieldset>
+			</div>
+		</div>
+	<!-- ENDIF -->
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label for="ver_user_pw">{L_CURRENT_PASSWORD}{L_COLON}</label><br /><span><!-- IF !S_REQUEST_EXISTS -->{L_UCP_LAXSLASH_NCREQUESTS_VPW_EXPLAIN}<!-- ELSE -->{L_UCP_LAXSLASH_NCREQUESTS_VPW_EXPLAIN_FOR_REVOKE}<!-- ENDIF --></span></dt>
+					<dd><input type="password" name="ver_user_pw" id="ver_user_pw" maxlength="255" value="{CURRENT_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" autocomplete="off" /></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+	<fieldset class="submit-buttons">
+		<!-- IF !S_REQUEST_EXISTS -->
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;<input type="submit" name="submit_request" class="button1" value="{L_SUBMIT}" />
+		<!-- ELSE -->
+			<input type="submit" value="{L_UCP_LAXSLASH_NCREQUESTS_CANCEL_NAMECHANGE_REQUEST}" name="cancel_namechange" class="button1" />
+		<!-- ENDIF -->
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

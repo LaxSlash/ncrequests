@@ -1,0 +1,24 @@
+{
+	"name": "laxslash/ncrequests",
+	"type": "phpbb-extension",
+	"description": "Allows for the submission of, and the approval/denial of, name change requests.",
+	"homepage": "",
+	"version": "0.1 ALPHA",
+	"time": "September 15th, 2016 1:56AM EDT (GMT-4)",
+	"license": "GPL-2.0",
+	"authors": [{
+		"name": "lax.slash",
+		"email": "LaxSlash1993@gmail.com",
+		"role": "Lead Developer",
+		"homepage": "https://www.github.com/LaxSlash"
+	}],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"extra": {
+		"display-name": "Name Change Requests",
+		"soft-require": {
+			"phpbb/phpbb": "3.1.9"
+		}
+	}
+}

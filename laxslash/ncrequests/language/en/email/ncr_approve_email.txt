@@ -1,0 +1,12 @@
+Subject: Username change request approved
+
+Hello!
+
+This e-mail is to inform you that the user account formerly known as {LAXSLASH_NCREQUESTS_OLD_USERNAME} has been renamed to {LAXSLASH_NCREQUESTS_NEW_USERNAME} as per
+your request.
+
+You will need to login to the forums using this username from now on.
+
+Don't forget to visit us again at {U_LAXSLASH_NCREQUESTS_BOARD_LINK}!
+
+{EMAIL_SIG}
