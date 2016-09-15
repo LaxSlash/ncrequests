@@ -217,7 +217,7 @@ class manage_requests_module
 							// Send the notifications here, if applicable.
 
 							// Sweet success!
-							trigger_error('LAXSLASH_NCREQUESTS_PENDING_REQUESTS_APPROVED_SUCCESSFULLY' . $adm_back_link($u_action));
+							trigger_error($user->lang['LAXSLASH_NCREQUESTS_PENDING_REQUESTS_APPROVED_SUCCESSFULLY'] . adm_back_link($u_action));
 						} else {
 							// Welp, we don't need this anymore...
 							unset($pending_changes);
@@ -316,7 +316,7 @@ class manage_requests_module
 						// Send notifications, and store the log entries.
 
 						// Success.
-						trigger_error('LAXSLASH_NCREQUESTS_PENDING_REQUESTS_DENIED_SUCCESSFULLY' . adm_back_link($u_action));
+						trigger_error($user->lang['LAXSLASH_NCREQUESTS_PENDING_REQUESTS_DENIED_SUCCESSFULLY'] . adm_back_link($u_action));
 					break;
 					case 'edit':
 						// Only if there's edit perms to the user.
@@ -471,7 +471,7 @@ class manage_requests_module
 										unset($error);
 
 										// Trigger an error.
-										trigger_error('LAXSLASH_NCREQUESTS_PENDING_REQUESTS_EDITED_SUCCESSFULLY' . $adm_back_link($u_action));
+										trigger_error($user->lang['LAXSLASH_NCREQUESTS_PENDING_REQUESTS_EDITED_SUCCESSFULLY'] . adm_back_link($u_action));
 									} else {
 										// Just unset everything here.
 										unset($pending_changes);
