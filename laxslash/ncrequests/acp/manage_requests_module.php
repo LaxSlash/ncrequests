@@ -23,6 +23,15 @@ class manage_requests_module
 		// Create the form key.
 		add_form_key('laxslash/ncrequests');
 
+		$error = array();
+
+		// Get data.
+		$requested_action = $request->variable('requested_action', '');
+		$action_reason = $request->variable('action_reason', '');
+		$log_usernote = $request->variable('log_usernote', false);
+		$incl_reason_in_notification = $request->variable('incl_reason_in_notification', false);
+		$send_notification_to_user = $request->variable('send_notification_to_user', false);
+
 		// If an action was submitted...
 		if ($request->is_set_post('submit_action'))
 		{
@@ -30,13 +39,6 @@ class manage_requests_module
 			{
 				$error[] = $user->lang('FORM_INVALID');
 			}
-
-			// Get data.
-			$requested_action = $request->variable('requested_action', '');
-			$action_reason = $request->variable('action_reason', '');
-			$log_usernote = $request->variable('log_usernote', false);
-			$incl_reason_in_notification = $request->variable('incl_reason_in_notification', false);
-			$send_notification_to_user = $request->variable('send_notification_to_user', false);
 
 			// Push the marked IDs into an array...
 			$marked = $request->variable('mark', array(0));
@@ -448,7 +450,11 @@ class manage_requests_module
 													'new_request_username' => $new_username,
 													'action_reason' => ($incl_reason_in_notification) ? $action_reason : '',
 													'edited_by' => $user->data['user_id'],
+													'laxslash_ncrequests_notification_id' => $config['laxslash_ncrequests_notification_id'],
 												);
+
+												// Increment the config by 1 for our next notification:
+												$config->increment('laxslash_ncrequests_notification_id', 1);
 
 												$notification_manager->add_notifications(array(
 													'laxslash.ncrequests.notification.type.ncr_edit',
@@ -471,7 +477,7 @@ class manage_requests_module
 										unset($error);
 
 										// Trigger an error.
-										trigger_error($user->lang['LAXSLASH_NCREQUESTS_PENDING_REQUESTS_EDITED_SUCCESSFULLY'] . adm_back_link($u_action));
+										trigger_error($user->lang['LAXSLASH_NCREQUESTS_PENDING_REQUESTS_EDITED_SUCCESSFULLY'] . adm_back_link($this->u_action));
 									} else {
 										// Just unset everything here.
 										unset($pending_changes);
@@ -503,7 +509,7 @@ class manage_requests_module
 		$result = $db->sql_query($sql);
 
 		$recent_approvals = array(); // Define an array to hold the most recent approval dates.
-		$approved = array();
+		$approved_pre = array();
 		$pending = array();
 
 		while ($row = $db->sql_fetchrow($result))
@@ -511,7 +517,7 @@ class manage_requests_module
 			// Seperate into two arrays. Pending, and approved.
 			if ($row['request_status'] == LAXSLASH_NCREQUESTS_REQUEST_STATUS_APPROVED && !isset($approved[$row['request_user_id']]))
 			{
-				$approved[$row['request_user_id']] = $row;
+				$approved_pre[$row['request_user_id']] = $row;
 			} elseif ($row['request_status'] == LAXSLASH_NCREQUESTS_REQUEST_STATUS_PENDING) {
 				$pending[$row['request_user_id']] = $row;
 			}
@@ -520,36 +526,32 @@ class manage_requests_module
 		}
 
 		// Remove entries in the approved array for where there is no pending request.
-		// Replace this section with array-intersect_key on a new array... only proceed if $approved has rows, otherwise unset and do nothing.
-		foreach ($approved as $current_check)
+		if (empty($approved_pre) && !empty($pending))
 		{
-			if (!isset($pending[$current_check['request_user_id']]))
+			$approved = array();
+			$approved = array_intersect_key($approved_pre, $pending);
+
+			foreach ($approved as $row)
 			{
-				unset($approved[$current_check['request_user_id']]);
+				if (!isset($recent_approvals[$row['request_user_id']]))
+				{
+					// Run a query for the log entry of that request ID, and get its timestamp.
+					$sql = 'SELECT timestamp
+							FROM ' . LAXSLASH_NCREQUESTS_ADMINLOG_TABLE . '
+							WHERE request_id = ' . $row['request_id'] . ' AND log_type = ' . LAXSLASH_NCREQUESTS_LOG_TYPE_APPROVAL;
+					$approved_result = $db->sql_query($sql);
+					$approved_row = $db->sql_fetchrow($approved_result);
+					$db->sql_freeresult($approved_result);
+					$recent_approvals[$row['request_user_id']] = $approved_row['timestamp'];
+					unset($approved_row);
+				}
+
+				unset($row);
 			}
 
-			unset($current_check);
+			unset($approved);
 		}
-
-		foreach ($approved as $row)
-		{
-			if (!isset($recent_approvals[$row['request_user_id']]))
-			{
-				// Run a query for the log entry of that request ID, and get its timestamp.
-				$sql = 'SELECT timestamp
-						FROM ' . LAXSLASH_NCREQUESTS_ADMINLOG_TABLE . '
-						WHERE request_id = ' . $row['request_id'] . ' AND log_type = ' . LAXSLASH_NCREQUESTS_LOG_TYPE_APPROVAL;
-				$approved_result = $db->sql_query($sql);
-				$approved_row = $db->sql_fetchrow($approved_result);
-				$db->sql_freeresult($approved_result);
-				$recent_approvals[$row['request_user_id']] = $approved_row['timestamp'];
-				unset($approved_row);
-			}
-
-			unset($row);
-		}
-
-		unset($approved);
+		unset($pre_approved);
 
 		if (!empty($pending))
 		{
