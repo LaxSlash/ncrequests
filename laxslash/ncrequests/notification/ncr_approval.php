@@ -65,12 +65,12 @@ class ncr_approval extends \phpbb\notification\type\base
 
 	public static function get_item_id($data)
 	{
-		return (int) $data['request_user_id'];
+		return (int) $data['request_id'];
 	}
 
 	public static function get_item_parent_id($data)
 	{
-		return (int) $data['request_id'];
+		return 0;
 	}
 
 	public function find_users_for_notification($data, $options = array())
@@ -94,15 +94,17 @@ class ncr_approval extends \phpbb\notification\type\base
 		$new_username = $this->user_loader->get_username($this->get_data('request_user_id'), 'no_profile');
 		$old_username = $this->get_data('username_old');
 
-		return $this->user->lang($this->language_key, $username_old, $username_new);
+		return $this->user->lang($this->language_key, $old_username, $new_username);
 	}
 
 	public function users_to_query()
 	{
 		$request_user = $this->get_data('request_user_id');
+		$approved_by = $this->get_data('approved_by');
 
 		$users = array(
-			$this->get_data('request_user_id') => array(''),
+			$request_user,
+			$approved_by,
 		);
 
 		return $users;
@@ -125,8 +127,6 @@ class ncr_approval extends \phpbb\notification\type\base
 
 	public function get_reference()
 	{
-		$this->user_loader->load_users(array($this->get_data('approved_by')));
-
 		return $this->user->lang('LAXSLASH_NCREQUESTS_NOTIFICATION_TYPE_NCR_APPROVE_TEXT', $this->get_data('username_old'), $this->get_data('username_new'), $this->user_loader->get_username($this->get_data('approved_by'), 'full'));
 	}
 
