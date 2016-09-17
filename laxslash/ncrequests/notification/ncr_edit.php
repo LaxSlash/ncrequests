@@ -65,12 +65,12 @@ class ncr_edit extends \phpbb\notification\type\base
 
 	public static function get_item_id($data)
 	{
-		return (int) $data['request_user_id'];
+		return (int) $data['laxslash_ncrequests_notification_id'];
 	}
 
 	public static function get_item_parent_id($data)
 	{
-		return (int) $data['request_id'];
+		return 0;
 	}
 
 	public function find_users_for_notification($data, $options = array())
@@ -99,9 +99,11 @@ class ncr_edit extends \phpbb\notification\type\base
 	public function users_to_query()
 	{
 		$request_user = $this->get_data('request_user_id');
+		$edited_by = $this->get_data('edited_by');
 
 		$users = array(
-			$this->get_data('request_user_id') => array(''),
+			$request_user,
+			$edited_by,
 		);
 
 		return $users;
@@ -124,9 +126,6 @@ class ncr_edit extends \phpbb\notification\type\base
 
 	public function get_reference()
 	{
-		// Does this break standards? This might need to be done to get the right username for the admin... unless there's a different way?
-		$this->user_loader->load_users(array($this->get_data('edited_by')));
-
 		if ($this->get_data('action_reason') == '')
 		{
 			return $this->user->lang('LAXSLASH_NCREQUESTS_NOTIFICATION_TYPE_NCR_EDIT_TEXT', $this->get_data('old_request_username'), $this->get_data('new_request_username'), $this->user_loader->get_username($this->get_data('edited_by'), 'full'));
@@ -155,6 +154,7 @@ class ncr_edit extends \phpbb\notification\type\base
 		$this->set_data('edited_by', $data['edited_by']);
 		$this->set_data('request_user_id', $data['request_user_id']);
 		$this->set_data('action_reason', (isset($data['action_reason'])) ? $data['action_reason'] : '');
+		$this->set_data('laxslash_ncrequests_notification_id', $data['laxslash_ncrequests_notification_id']);
 
 		return parent::create_insert_array($data, $pre_create_data);
 	}

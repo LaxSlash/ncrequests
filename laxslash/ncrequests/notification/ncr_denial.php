@@ -65,12 +65,12 @@ class ncr_denial extends \phpbb\notification\type\base
 
 	public static function get_item_id($data)
 	{
-		return (int) $data['request_user_id'];
+		return (int) $data['request_id'];
 	}
 
 	public static function get_item_parent_id($data)
 	{
-		return (int) $data['request_id'];
+		return 0;
 	}
 
 	public function find_users_for_notification($data, $options = array())
@@ -93,15 +93,17 @@ class ncr_denial extends \phpbb\notification\type\base
 	{
 		$requested_username = $this->get_data('username_requested');
 
-		return $this->user->lang($this->language_key, $username_requested);
+		return $this->user->lang($this->language_key, $requested_username);
 	}
 
 	public function users_to_query()
 	{
 		$request_user = $this->get_data('request_user_id');
+		$denied_by = $this->get_data('denied_by');
 
 		$users = array(
-			$this->get_data('request_user_id') => array(''),
+			$request_user,
+			$denied_by,
 		);
 
 		return $users;
@@ -124,8 +126,6 @@ class ncr_denial extends \phpbb\notification\type\base
 
 	public function get_reference()
 	{
-		$this->user_loader->load_users(array($this->get_data('denied_by')));
-
 		if ($this->get_data('action_reason') == '')
 		{
 			return $this->user->lang('LAXSLASH_NCREQUESTS_NOTIFICATION_TYPE_NCR_DENY_TEXT', $this->get_data('username_requested'), $this->user_loader->get_username($this->get_data('denied_by'), 'full'));
