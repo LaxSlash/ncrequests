@@ -16,7 +16,7 @@ class v02a extends migration
 {
 	static public function depends_on()
 	{
-		return array('laxslash\ncrequests\migrations\v01pl1a');
+		return array('\laxslash\ncrequests\migrations\v01pl1a');
 	}
 
 	public function update_data()
