@@ -56,7 +56,7 @@ services:
         class: laxslash\ncrequests\notification\ncr_edit
         scope: prototype
         tags:
-            - {name: notification.type }
+            - { name: notification.type }
         arguments:
             - @user_loader
             - @dbal.conn
@@ -69,3 +69,4 @@ services:
             - %tables.user_notifications%
             - %core.root_path%
             - %core.php_ext%
+
