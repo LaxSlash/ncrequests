@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Allows for the submission of, and the approval/denial of, name change requests.",
 	"homepage": "",
-	"version": "0.3 ALPHA",
-	"time": "September 17th, 2016 7:11PM EDT (GMT-4)",
+	"version": "0.4 ALPHA",
+	"time": "September 25th, 2016 1:28AM EDT (GMT-4)",
 	"license": "GPL-2.0",
 	"authors": [{
 		"name": "lax.slash",

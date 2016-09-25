@@ -1,3 +1,17 @@
+Version 0.4 ALPHA:
+- Fixed the get_redirect_url() function to actually return something in ncr_edit.
+- Fixed PHP Notices in the ACP and UCP Modules.
+- Added a Notification.
+- Permission properly added to the core.permissions phpBB Event
+- Permission auth checking now works for the extension's ACP Module.
+- Fixed PHP File comment headers (This is NCRequests, not Force Styles)
+- A few minor lingual corrections, changes and clarifications
+- Added log viewing to the ACP and UCP modules
+- Fixed no new-line in at least one file
+- Fixed services.yml spacing
+- Notifications can no longer be ignored by the user
+- SQL Query Changes to accomodate for the new logging system
+
 Version 0.3 ALPHA
 - Updated Version 0.2 ALPHA Changelog Entry
 - array_intersect_key is now used for getting last approval dates on applicable entries on the ACP Manage Page/Module
