@@ -1,0 +1,196 @@
+<!-- INCLUDE ucp_header.html -->
+
+<!-- IF LAXSLASH_NCREQUESTS_LOG_VIEW_MODE == 'create' -->
+	<h2>{L_LAXSLASH_NCREQUESTS_UCP_LOG_VIEWER_HDR} :: {L_LAXSLASH_NCREQUESTS_CREATE_REQUEST_LOG_ENTRY_TITLE}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_USERNAME_REQUESTED}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_OPEN_DATE}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_PRE_REQUEST_USERNAME}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_USERNAME_PRE_REQUEST}</strong></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+<!-- ELSEIF LAXSLASH_NCREQUESTS_LOG_VIEW_MODE == 'edit' -->
+	<h2>{L_LAXSLASH_NCREQUESTS_UCP_LOG_VIEWER_HDR} :: {L_LAXSLASH_NCREQUESTS_EDIT_REQUEST_LOG_ENTRY_TITLE}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_OLD_REQUEST_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_OLD_USERNAME}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_NEW_REQUEST_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_NEW_USERNAME}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_EDIT_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_DATE_OF_CHANGE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_SENT_NOTIFICATION_LBL}{L_COLON}</label></dt>
+					<dd><strong><!-- IF LAXSLASH_NCREQUESTS_NOTIFICATION_SENT -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></strong></dd>
+				</dl>
+				<!-- IF LAXSLASH_NCREQUESTS_EDIT_REASON -->
+					<dl>
+						<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_EDIT_REASON_LBL}{L_COLON}</label></dt>
+						<dd><strong>{LAXSLASH_NCREQUESTS_EDIT_REASON}</strong></dd>
+					</dl>
+				<!-- ENDIF -->
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_EDITED_BY_USERNAME_LBL}{L_COLON}</label></dt>
+					<dd><strong><font color="{LAXSLASH_NCREQUESTS_EDITING_USER_COLOR}">{LAXSLASH_NCREQUESTS_EDITING_USER}</font></strong></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+<!-- ELSEIF LAXSLASH_NCREQUESTS_LOG_VIEW_MODE == 'approve' -->
+	<h2>{L_LAXSLASH_NCREQUESTS_UCP_LOG_VIEWER_HDR} :: {L_LAXSLASH_NCREQUESTS_APPROVE_REQUEST_LOG_ENTRY_TITLE}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_USERNAME_REQUESTED}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_OLD_USERNAME_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_OLD_USERNAME}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_SENT_NOTIFICATION_LBL}{L_COLON}</label></dt>
+					<dd><strong><!-- IF LAXSLASH_NCREQUESTS_NOTIFICATION_SENT -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></strong></dd>
+				</dl>
+				<!-- IF LAXSLASH_NCREQUESTS_REQUEST_APPROVAL_NOTE -->
+					<dl>
+						<dt><label>{L_LAXSLASH_NCREQUESTS_APPROVAL_NOTE_LBL}</label></dt>
+						<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_APPROVAL_NOTE}</strong></dd>
+					</dl>
+				<!-- ENDIF -->
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_APPROVE_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_APPROVAL_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_APPROVED_BY_USERNAME_LBL}{L_COLON}</label></dt>
+					<dd><strong><font color="{LAXSLASH_NCREQUESTS_APPROVING_USER_COLOR}">{LAXSLASH_NCREQUESTS_APPROVING_USER}</font></strong></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+<!-- ELSEIF LAXSLASH_NCREQUESTS_LOG_VIEW_MODE == 'deny' -->
+	<h2>{L_LAXSLASH_NCREQUESTS_UCP_LOG_VIEWER_HDR} :: {L_LAXSLASH_NCREQUESTS_DENY_REQUEST_LOG_ENTRY_TITLE}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_DENY_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_DENIAL_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_SENT_NOTIFICATION_LBL}{L_COLON}</label></dt>
+					<dd><strong><!-- IF LAXSLASH_NCREQUESTS_NOTIFICATION_SENT -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></strong></dd>
+				</dl>
+				<!-- IF LAXSLASH_NCREQUESTS_DENY_REASON -->
+					<dl>
+						<dt><label>{L_LAXSLASH_NCREQUESTS_DENY_REASON_LBL}{L_COLON}</label></dt>
+						<dd><strong>{LAXSLASH_NCREQUESTS_DENY_REASON}</strong></dd>
+					</dl>
+				<!-- ENDIF -->
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_DENIED_BY_USERNAME_LBL}{L_COLON}</label></dt>
+					<dd><strong><font color="{LAXSLASH_NCREQUESTS_DENYING_USER_COLOR}">{LAXSLASH_NCREQUESTS_DENYING_USER}</font></strong></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+<!-- ELSEIF LAXSLASH_NCREQUESTS_LOG_VIEW_MODE == 'cancel' -->
+	<h2>{L_LAXSLASH_NCREQUESTS_UCP_LOG_VIEWER_HDR} :: {L_LAXSLASH_NCREQUESTS_CANCEL_REQUEST_LOG_ENTRY_TITLE}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_DATE}</strong></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_LAXSLASH_NCREQUESTS_CANCEL_DATE_LBL}{L_COLON}</label></dt>
+					<dd><strong>{LAXSLASH_NCREQUESTS_REQUEST_CANCELLATION_DATE}</strong></dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+
+<!-- ENDIF -->
+
+<br />
+
+<div class="panel">
+	<div class="inner">
+		<table class="table1 responsive">
+			<thead>
+				<tr>
+					<th>{L_LAXSLASH_NCREQUESTS_ACTION_TYPE_HDR}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_LOG_ENTRY_DATE_HDR}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_ACTION_USER_HDR}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_ACTIONS_HDR}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN log_entries -->
+					<!-- IF log_entries.S_LAXSLASH_NCREQUESTS_LOG_ENTRIES_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td style="text-align: center;"><!-- IF log_entries.S_LAXSLASH_NCREQUESTS_ACTIVE_LOG_ENTRY -->{L_LAXSLASH_NCREQUESTS_SHOW_ACTIVE_ROW}&nbsp;<!-- ENDIF -->{log_entries.LAXSLASH_NCREQUESTS_ACTION_TYPE}</td>
+						<td style="text-align: center;">{log_entries.LAXSLASH_NCREQUESTS_ENTRY_DATE}</td>
+						<td style="text-align: center;"><strong><font color="{log_entries.LAXSLASH_NCREQUESTS_LOGGING_USER_COLOR}">{log_entries.LAXSLASH_NCREQUESTS_LOGGING_USER}</font></strong></td>
+						<td style="text-align: center;"><!-- IF !log_entries.S_LAXSLASH_NCREQUESTS_ACTIVE_LOG_ENTRY --><a href="{log_entries.U_LAXSLASH_NCREQUESTS_VIEW_ACTION_DETAILS}">{L_LAXSLASH_NCREQUESTS_VIEW_LOG_DETAILS}</a><!-- ELSE --><i>{L_LAXSLASH_NCREQUESTS_VIEW_LOG_DETAILS}</i><!-- ENDIF--></td>
+					</tr>
+				<!-- BEGINELSE -->
+					<tr>
+						<td colspan="4" style="text-align: center">{L_LAXSLASH_NCREQUESTS_UCP_NO_LOG_ENTRIES_EXIST}</td>
+					</tr>
+				<!-- END log_entries -->
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- INCLUDE ucp_footer.html -->
