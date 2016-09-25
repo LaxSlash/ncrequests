@@ -1,9 +1,9 @@
 <?php
 /**
- * This file is a part of the Force Style Changes modification by
- * lax.slash for the phpBB 3.1 Forums Software.
+ * This file is a part of the Name Change Requests
+ * phpBB 3.1 Extension by LaxSlash1993.
  *
- * @copyright (c) lax.slash <https://www.github.com/LaxSlash>
+ * @copyright (c) LaxSlash1993 <https://www.github.com/LaxSlash>
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -60,7 +60,7 @@ class ncr_denial extends \phpbb\notification\type\base
 
 	public function is_available()
 	{
-		return true;
+		return false;
 	}
 
 	public static function get_item_id($data)
