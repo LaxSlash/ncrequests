@@ -6,6 +6,10 @@
 
 <p>{L_LAXSLASH_NCREQUESTS_ACP_MANAGE_REQUESTS_EXPLAIN}</p>
 
+<h1>{L_LAXSLASH_NCREQUESTS_ACP_PENDING_REQUESTS_HEADER}</h1>
+
+<p>{L_LAXSLASH_NCREQUESTS_ACP_PENDING_REQUESTS_EXPLAIN}</p>
+
 <!-- IF S_ERRORS -->
 	<p class="error">
 		{ERRORS_OUTPUT}
@@ -75,5 +79,34 @@
 		</fieldset>
 	</form>
 <!-- ENDIF -->
+
+<h1>{L_LAXSLASH_NCREQUESTS_ACP_REQUESTS_LOG_HEADER}</h1>
+
+<p>{L_LAXSLASH_NCREQUESTS_ACP_REQUESTS_LOG_EXPLAIN}</p>
+
+<table class="table1 zebra-table responsive">
+	<thead>
+		<th>{L_LAXSLASH_NCREQUESTS_ACP_LOG_STATUS}</th>
+		<th>{L_USERNAME}</th>
+		<th>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</th>
+		<th>{L_LAXSLASH_NCREQUESTS_DATE_OF_REQUEST}</th>
+		<th>{L_ACTIONS}</th>
+	</thead>
+	<tbody>
+		<!-- BEGIN show_requests_log -->
+			<tr>
+				<td style="vertical-align: top;">{show_requests_log.LAXSLASH_NCREQUESTS_STATUS}</td>
+				<td style="vertical-align: top;"><strong><font color="{show_requests_log.LAXSLASH_NCREQUESTS_USERNAME_COLOR}">{show_requests_log.LAXSLASH_NCREQUESTS_USERNAME}</font></strong></td>
+				<td style="vertical-align: top;">{show_requests_log.LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</td>
+				<td style="vertical-align: top;">{show_requests_log.LAXSLASH_NCREQUESTS_REQUEST_SUBMITTED_TIMESTAMP}</td>
+				<td style="vertical-align: top; text-align: center;"><a href="{show_requests_log.U_LAXSLASH_NCREQUESTS_VIEW_LOG_LINK}">{L_LAXSLASH_NCREQUESTS_ACP_VIEW_LOG}</a></td>
+			</tr>
+		<!-- BEGINELSE -->
+			<tr>
+				<td colspan=5 style="text-align: center;">{L_LAXSLASH_NCREQUESTS_ACP_LOG_NO_REQUESTS_FOUND}</td>
+			</tr>
+		<!-- END show_requests_log -->
+	</tbody>
+</table>
 
 <!-- INCLUDE overall_footer.html -->
