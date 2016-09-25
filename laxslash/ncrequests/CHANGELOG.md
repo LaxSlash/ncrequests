@@ -1,9 +1,6 @@
 Version 0.4 ALPHA:
 - Fixed the get_redirect_url() function to actually return something in ncr_edit.
 - Fixed PHP Notices in the ACP and UCP Modules.
-- Added a Notification.
-- Permission properly added to the core.permissions phpBB Event
-- Permission auth checking now works for the extension's ACP Module.
 - Fixed PHP File comment headers (This is NCRequests, not Force Styles)
 - A few minor lingual corrections, changes and clarifications
 - Added log viewing to the ACP and UCP modules
