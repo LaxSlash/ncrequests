@@ -64,4 +64,35 @@
 	</fieldset>
 </form>
 
+<br />
+
+<div class="panel">
+	<div class="inner">
+		<table class="table1 responsive">
+			<thead>
+				<tr>
+					<th>{L_LAXSLASH_NCREQUESTS_UCP_REQUEST_SUBMISSION_DATE_HDR}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_UCP_REQUEST_STATUS_HDR}</th>
+					<th>{L_LAXSLASH_NCREQUESTS_UCP_ACTIONS_HDR}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN show_user_requests_log -->
+					<!-- IF show_user_requests_log.S_LAXSLASH_NCREQUESTS_SHOW_USER_REQUESTS_LOG_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td style="text-align: center;">{show_user_requests_log.LAXSLASH_NCREQUESTS_REQUEST_SUBMIT_DATE}</td>
+						<td style="text-align: center;">{show_user_requests_log.LAXSLASH_NCREQUESTS_REQUESTED_USERNAME}</td>
+						<td style="text-align: center;">{show_user_requests_log.LAXSLASH_NCREQUESTS_REQUEST_STATUS_LANG}</td>
+						<td style="text-align: center;"><a href="{show_user_requests_log.U_LAXSLASH_NCREQUESTS_REQUEST_VIEW_LOG}">{L_LAXSLASH_NCREQUESTS_UCP_VIEW_LOG}</a></td>
+					</tr>
+				<!-- BEGINELSE -->
+					<tr>
+						<td colspan="4" style="text-align: center;">{L_LAXSLASH_NCREQUESTS_NO_USER_REQUESTS_FOUND}</td>
+					</tr>
+				<!-- END show_user_requests_log -->
+			</tbody>
+		</table>
+	</div>
+</div>
+
 <!-- INCLUDE ucp_footer.html -->
